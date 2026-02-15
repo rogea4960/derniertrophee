@@ -1,0 +1,39 @@
+/* Styles Généraux */
+body { margin: 0; font-family: 'Arial Black', sans-serif; text-align: center; color: white; }
+.main-page { background-color: #1a2a47; }
+.dark-header { background: #1a1a1a; padding: 15px; display: flex; justify-content: center; }
+.dark-header img { height: 60px; width: auto; }
+
+/* Grille Index */
+.content { padding: 40px 10px; }
+.club-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 800px;
+    margin: 20px auto 40px;
+    gap: 10px;
+}
+.club-link { color: #ffeb3b; font-size: 1.1rem; text-decoration: none; padding: 5px; }
+.club-link:hover { color: white; }
+
+/* Page Détails */
+#detail-body { transition: background-color 0.5s ease; min-height: 100vh; }
+#club-logo { width: 180px; margin: 20px 0; }
+.timer-display { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 30px 0; }
+
+.time-card { 
+    background: white; color: #333; padding: 20px; border-radius: 15px; 
+    min-width: 100px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); 
+}
+.time-card span { display: block; font-size: 3rem; font-weight: bold; }
+.time-card p { margin: 5px 0 0; font-size: 0.8rem; color: #777; text-transform: uppercase; }
+.red-text { color: #e74c3c !important; }
+
+.desc-text { font-size: 1.2rem; max-width: 800px; margin: 20px auto; padding: 0 20px; }
+
+/* Boutons */
+.share-container { margin: 20px 0; display: flex; justify-content: center; gap: 10px; }
+.share-btn { border: none; padding: 10px 20px; border-radius: 5px; color: white; font-weight: bold; cursor: pointer; }
+.fb { background: #3b5998; }
+.tw { background: #1da1f2; }
+.back-link { display: inline-block; margin-top: 30px; color: white; opacity: 0.7; }
