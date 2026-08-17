@@ -1,39 +1,63 @@
-/* Styles Généraux */
-body { margin: 0; font-family: 'Arial Black', sans-serif; text-align: center; color: white; }
-.main-page { background-color: #1a2a47; }
-.dark-header { background: #1a1a1a; padding: 15px; display: flex; justify-content: center; }
-.dark-header img { height: 60px; width: auto; }
+body { margin: 0; font-family: 'Arial Black', sans-serif; text-align: center; color: white; overflow-x: hidden; }
 
-/* Grille Index */
-.content { padding: 40px 10px; }
-.club-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 800px;
-    margin: 20px auto 40px;
-    gap: 10px;
+/* Feu d'artifice au premier plan forcé */
+#fireworks-canvas {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    pointer-events: none !important;
+    z-index: 999999 !important; 
 }
-.club-link { color: #ffeb3b; font-size: 1.1rem; text-decoration: none; padding: 5px; }
-.club-link:hover { color: white; }
 
-/* Page Détails */
-#detail-body { transition: background-color 0.5s ease; min-height: 100vh; }
-#club-logo { width: 180px; margin: 20px 0; }
-.timer-display { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 30px 0; }
+.main-page { background: linear-gradient(to bottom, #0f172a, #111827); min-height: 100vh; }
+.dark-header { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(10px); padding: 12px 15px; display: flex; justify-content: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.dark-header img { height: 50px; width: auto; }
+.content { padding: 20px 10px; }
 
-.time-card { 
-    background: white; color: #333; padding: 20px; border-radius: 15px; 
-    min-width: 100px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); 
+/* Grille des clubs adaptée mobile */
+.club-grid { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 1100px; margin: 20px auto; gap: 12px; padding: 0 15px; }
+.club-link { position: relative; overflow: hidden; color: white; font-size: 0.95rem; text-decoration: none; padding: 12px 8px; border-radius: 12px; background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(8px); transition: all 0.25s ease; border: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: center; min-height: 50px; z-index: 1; text-align: center; }
+.club-link::before { content: ""; position: absolute; inset: 0; background-image: var(--bg-logo); background-size: contain; background-position: center; background-repeat: no-repeat; opacity: 0.15; transition: opacity 0.25s ease, transform 0.25s ease; z-index: -1; }
+.club-link:hover { transform: translateY(-4px); background: rgba(255, 255, 255, 0.18); color: #ffe600; }
+.club-link:hover::before { opacity: 0.28; transform: scale(1.1); }
+
+#detail-body { min-height: 100vh; transition: background 0.5s ease; background-attachment: fixed; display: flex; flex-direction: column; align-items: center; box-sizing: border-box; padding: 10px 10px 30px 10px; }
+#detail-body::before { content: ""; position: fixed; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.45)); z-index: -2; }
+
+#club-logo { width: 120px; margin-top: 10px; margin-bottom: 10px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4)); transition: transform 0.3s ease; }
+#title-text { font-size: 1.8rem; margin-top: 10px; margin-bottom: 10px; padding: 0 15px; text-shadow: 0 4px 10px rgba(0,0,0,0.4); }
+#congrats-message { max-width: 600px; margin: 5px auto 15px auto; font-size: 1.3rem; color: #ffe600; text-shadow: 0 0 10px rgba(255, 230, 0, 0.6), 0 2px 4px rgba(0,0,0,0.5); animation: pulseGold 2s infinite ease-in-out; padding: 0 15px; }
+
+@keyframes pulseGold { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.05); opacity: 1; text-shadow: 0 0 20px rgba(255, 230, 0, 0.9), 0 2px 4px rgba(0,0,0,0.5); } }
+
+/* Chronomètre responsive */
+.timer-display { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin: 15px 0; width: 100%; max-width: 600px; padding: 0 10px; box-sizing: border-box; }
+.time-card { background: rgba(255,255,255,0.95); color: #222; padding: 12px 10px; border-radius: 12px; flex: 1; min-width: 65px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+.time-card span { display: block; font-size: 1.8rem; font-weight: bold; }
+.time-card p { margin: 4px 0 0; font-size: 0.65rem; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.red-text { color: #e53935 !important; }
+.desc-text { font-size: 1.1rem; max-width: 800px; margin: 10px auto; padding: 0 20px; line-height: 1.4; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+.club-context { display: block; margin-top: 12px; font-size: 1rem; color: #ffe600; font-style: italic; font-family: Arial, sans-serif; font-weight: normal; line-height: 1.5; padding: 0 10px; }
+.back-link { display: inline-block; margin-top: 20px; color: white; opacity: 0.8; text-decoration: none; transition: 0.2s ease; font-size: 0.95rem; }
+.back-link:hover { opacity: 1; transform: translateX(-4px); }
+
+/* MEDIA QUERIES POUR SMARTPHONES */
+@media (max-width: 768px) { 
+    .club-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } 
+    #title-text { font-size: 1.5rem; } 
+    #congrats-message { font-size: 1.1rem; } 
+    .time-card { min-width: 55px; padding: 10px 5px; } 
+    .time-card span { font-size: 1.5rem; } 
+    .desc-text { font-size: 1rem; } 
+    #club-logo { width: 100px; } 
 }
-.time-card span { display: block; font-size: 3rem; font-weight: bold; }
-.time-card p { margin: 5px 0 0; font-size: 0.8rem; color: #777; text-transform: uppercase; }
-.red-text { color: #e74c3c !important; }
 
-.desc-text { font-size: 1.2rem; max-width: 800px; margin: 20px auto; padding: 0 20px; }
-
-/* Boutons */
-.share-container { margin: 20px 0; display: flex; justify-content: center; gap: 10px; }
-.share-btn { border: none; padding: 10px 20px; border-radius: 5px; color: white; font-weight: bold; cursor: pointer; }
-.fb { background: #3b5998; }
-.tw { background: #1da1f2; }
-.back-link { display: inline-block; margin-top: 30px; color: white; opacity: 0.7; }
+@media (max-width: 480px) { 
+    .club-grid { grid-template-columns: repeat(2, 1fr); } /* Garde 2 colonnes même sur très petits écrans pour un meilleur rendu compact */
+    #title-text { font-size: 1.35rem; }
+    .time-card span { font-size: 1.3rem; }
+    .time-card p { font-size: 0.55rem; }
+}
