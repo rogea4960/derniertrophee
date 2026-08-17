@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Depuis Quand Ce Club N'a Plus Gagné De Trophée ??`;</title>
+    <title>Depuis Quand Ce Club N'a Plus Gagné De Trophée ??</title>
 </head>
 <body id="detail-body">
+    <canvas id="fireworks-canvas"></canvas>
+
     <header class="dark-header">
         <div class="logo-area">
             <a href="index.html">
@@ -22,10 +24,12 @@
             <img id="club-logo" src="" alt="Logo Club">
         </div>
 
+        <div id="congrats-message"></div>
+
         <div class="timer-display" id="timer-container">
             <div class="time-card">
                 <span id="y">0</span>
-                <p>Années</p>
+                <p>Ans</p>
             </div>
             <div class="time-card">
                 <span id="d" class="red-text">0</span>
